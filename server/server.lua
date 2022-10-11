@@ -1,13 +1,29 @@
 -----------------For support, scripts, and more----------------
 --------------- https://discord.gg/wasabiscripts  -------------
 ---------------------------------------------------------------
+local framework = nil
+
+if GetResourceState('es_extended') == 'started' or GetResourceState('es_extended') == 'starting' then
+    framework = 'esx'
+    ESX = exports['es_extended']:getSharedObject()
+elseif GetResourceState('qb-core') == 'started' or GetResourceState('qb-core') == 'starting' then
+    framework = 'qb'
+    QBCore = exports['qb-core']:GetCoreObject()
+else
+    print("^0[^1ERROR^0] The framework could not be initialised!^0")
+    print("^0[^1ERROR^0] For Support: https://discord.gg/wasabiscripts^0")
+end
 local houses = {}
-ESX = exports["es_extended"]:getSharedObject()
 
-
-ESX.RegisterUsableItem(Config.CandyBasket, function(source)
-    TriggerClientEvent('wasabi_halloween:usePumpkin', source)
-end)
+if framework == 'esx' then
+    ESX.RegisterUsableItem(Config.CandyBasket, function(source)
+        TriggerClientEvent('wasabi_halloween:usePumpkin', source)
+    end)
+else
+    QBCore.Functions.CreateUseableItem(Config.CandyBasket, function(source)
+        TriggerClientEvent('wasabi_halloween:usePumpkin', source)
+    end)
+end
 
 RegisterServerEvent('wasabi_halloween:deleteObj')
 AddEventHandler('wasabi_halloween:deleteObj', function(netId)
@@ -36,9 +52,14 @@ AddEventHandler('wasabi_halloween:trickOrTreat', function(house, coords)
         local dist = #(Config.Houses[house] - coords)
         if dist < 5.5 then
             local rTreat = Config.Treats[math.random(1,#Config.Treats)]
-            local xPlayer = ESX.GetPlayerFromId(source)
+            if framework == 'esx' then
+                local xPlayer = ESX.GetPlayerFromId(source)
+                xPlayer.addInventoryItem(rTreat.item, math.random(rTreat.min,rTreat.max))
+            else
+                local Player = QBCore.Functions.GetPlayer(source)
+                Player.Functions.AddItem(rTreat.item, math.random(rTreat.min,rTreat.max))
+            end
             houses[house] = true
-            xPlayer.addInventoryItem(rTreat.item, math.random(rTreat.min,rTreat.max))
             TriggerClientEvent('wasabi_halloween:removeBlip', -1, house)
         end
     end
