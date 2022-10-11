@@ -11,6 +11,7 @@ This resource was created as a free fun script for your players to feel festive 
 - Usable jack-o-lantern item to toggle basket prop(Configurable)
 - Custom prop(For the basket)
 - Optimized 0.00ms idle
+- Compatible with ESX/QBCore
 - Utilizes ox_lib
 
 
