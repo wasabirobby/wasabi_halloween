@@ -1,7 +1,6 @@
 -----------------For support, scripts, and more----------------
 --------------- https://discord.gg/wasabiscripts  -------------
 ---------------------------------------------------------------
---test
 ESX = exports["es_extended"]:getSharedObject()
 
 
