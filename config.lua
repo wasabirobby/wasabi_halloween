@@ -3,6 +3,7 @@
 ---------------------------------------------------------------
 
 Config = {}
+Config.checkForUpdates = true -- Check for updates?
 
 Config.PumpkinItem = 'jackolantern' -- Must have item in database
 
