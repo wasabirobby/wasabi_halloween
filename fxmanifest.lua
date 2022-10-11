@@ -5,11 +5,11 @@ fx_version 'cerulean'
 game 'gta5'
 lua54 'yes'
 
-description "Wasabi's ESX Halloween Script"
+description "Wasabi's ESX/QBCore Halloween Script"
 
 author 'wasabirobby#5110'
 
-version '1.0.1'
+version '1.0.2'
 
 client_scripts {
 	'client/*.lua'
