@@ -14,6 +14,8 @@ This resource was created as a free fun script for your players to feel festive 
 - Compatible with ESX/QBCore
 - Utilizes ox_lib
 
+## Dependency
++ ox_lib - https://github.com/overextended/ox_lib/releases
 
 ## Installation
 
