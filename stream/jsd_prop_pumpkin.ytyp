@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<CMapTypes>
+  <extensions/>
+  <archetypes>
+    <Item type="CBaseArchetypeDef">
+      <lodDist value="100.00000000"/>
+      <flags value="32"/>
+      <specialAttribute value="0"/>
+      <bbMin x="-0.07768825" y="-0.03843416" z="-0.10890120"/>
+      <bbMax x="0.07806713" y="0.03833046" z="0.10858550"/>
+      <bsCentre x="0.00018944" y="-0.00005185" z="-0.00015788"/>
+      <bsRadius value="0.13915190"/>
+      <hdTextureDist value="100.00000000"/>
+      <name>jsd_prop_pumpkin</name>
+      <textureDictionary>jsd_prop_pumpkin</textureDictionary>
+      <clipDictionary/>
+      <drawableDictionary/>
+      <physicsDictionary>jsd_prop_pumpkin</physicsDictionary>
+      <assetType>ASSET_TYPE_DRAWABLE</assetType>
+      <assetName>jsd_prop_pumpkin</assetName>
+      <extensions/>
+    </Item>
+   </archetypes>
+  <name>jsd_prop_pumpkin</name>
+  <dependencies/>
+  <compositeEntityTypes/>
+</CMapTypes>
