@@ -1,6 +1,8 @@
+# WILL BE ADDING TRICK-OR-TREATING TO THIS WITHIN 24 HOURS
+
 # wasabi_halloween
 
-This resource was created as a free fun script to equip a jack-o-lantern candy basket to your hand with usable item. May add additional features like trick-or-treating.
+This resource was created as a free fun script to equip a jack-o-lantern candy basket to your hand with usable item.
 
 ## Features:
 - Usable jack-o-lantern
