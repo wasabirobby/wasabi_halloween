@@ -1,6 +1,6 @@
 # wasabi_halloween
 
-This resource was created as a free fun script to equip a jack-o-lantern candy basket to your hand with usable item. May add additional features like tick-or-treating.
+This resource was created as a free fun script to equip a jack-o-lantern candy basket to your hand with usable item. May add additional features like trick-or-treating.
 
 ## Features:
 - Usable jack-o-lantern
