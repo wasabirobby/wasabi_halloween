@@ -24,6 +24,15 @@ This resource was created as a free fun script for your players to feel festive 
 - Maybe put `jackolantern` in a shop?
 - Ensure script after ox_lib and enjoy
 
+
+## QB-Core
+- uncomment the qbcore items config
+- Add this to shared/items
+
+	---wasabiiiii
+    ["jackolantern"] 			 	 = {["name"] = "jackolantern", 				    ["label"] = "jackolantern", 			 ["weight"] = 100,  	["type"] = "item", 		["image"] = "jackolantern.png", 			["unique"] = false,     ["useable"] = true, 	["shouldClose"] = true,   ["combinable"] = nil,   ["description"] = "Wasibi Brand jackolantern" },
+
+
 ### Extra Information
 - Inventory image included in the `InventoryImages` directory
 - You must add the item `jackolantern`(or whatever config item is set as) to your items database/table.

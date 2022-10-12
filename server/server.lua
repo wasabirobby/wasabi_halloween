@@ -58,6 +58,7 @@ AddEventHandler('wasabi_halloween:trickOrTreat', function(house, coords)
             else
                 local Player = QBCore.Functions.GetPlayer(source)
                 Player.Functions.AddItem(rTreat.item, math.random(rTreat.min,rTreat.max))
+				TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items[rTreat.item], "add")
             end
             houses[house] = true
             TriggerClientEvent('wasabi_halloween:removeBlip', -1, house)
