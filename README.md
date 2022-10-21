@@ -4,8 +4,8 @@ This resource was created as a free fun script for your players to feel festive 
 
 ## Features:
 - Trick-or-treat at configured locations
-- Once house has been trick-or-treated it will disappear from map and cannot be looted again
-- 45 Pre-Configured locations(Mirror Park; Could use some more locations)
+- Configurable option to only allow one person per house(See config)
+- 100 Pre-Configured locations(Mirror Park; Could use some more locations)
 - Animations
 - Configurable peds
 - Usable jack-o-lantern item to toggle basket prop(Configurable)
