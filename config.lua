@@ -9,7 +9,7 @@ Config.CandyBasket = 'jackolantern' -- Item must be existing in server. You use 
 
 Config.TrickOrTreat = true -- Enable trick or treat? Put this to false to just enable the usable candy baskets
 
-Config.onePlayerPerHouse = false -- Set to false if you want everyone a chance to trick-or-treat every house
+Config.onePlayerPerHouse = true -- Set to false if you want everyone a chance to trick-or-treat every house
 
 Config.Houses = {
 	[1] = vec3(1060.564, -378.1245, 68.23115),
