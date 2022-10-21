@@ -30,11 +30,35 @@ AddEventHandler('wasabi_halloween:deleteObj', function(netId)
     TriggerClientEvent('wasabi_halloween:deletePumpkin', -1, netId)
 end)
 
+getRockstarLicense = function(source)
+    local license
+    for k,v in pairs(GetPlayerIdentifiers(source)) do
+        if string.sub(v, 1, string.len('license:')) == 'license:' then
+            license = v
+        end
+    end
+    return license
+end
+
+lib.callback.register('wasabi_halloween:getLicense', function(source)
+    local license = getRockstarLicense(source)
+    return license
+end)
+
 lib.callback.register('wasabi_halloween:canKnock', function(source, house)
-    if houses[house] then
-        return false
+    if not Config.onePlayerPerHouse then
+        if houses[house] then
+            return false
+        else
+            return true
+        end
     else
-        return true
+        local license = getRockStarLicense(source)
+        if houses?[house]?[license] then 
+            return false
+        else
+            return true
+        end
     end
 end)
 
@@ -48,7 +72,28 @@ end)
 
 RegisterServerEvent('wasabi_halloween:trickOrTreat')
 AddEventHandler('wasabi_halloween:trickOrTreat', function(house, coords)
-    if not houses[house] then
+    if Config.onePlayerPerHouse then
+        if not houses[house] then
+            local dist = #(Config.Houses[house] - coords)
+            if dist < 5.5 then
+                local rTreat = Config.Treats[math.random(1,#Config.Treats)]
+                if framework == 'esx' then
+                    local xPlayer = ESX.GetPlayerFromId(source)
+                    xPlayer.addInventoryItem(rTreat.item, math.random(rTreat.min,rTreat.max))
+                else
+                    local Player = QBCore.Functions.GetPlayer(source)
+                    Player.Functions.AddItem(rTreat.item, math.random(rTreat.min,rTreat.max))
+                    TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items[rTreat.item], "add")
+                end
+                houses[house] = true
+                TriggerClientEvent('wasabi_halloween:removeBlip', -1, house)
+            end
+        end
+    else
+        local license = getRockstarLicense(source)
+        if not houses[house] then
+            houses[house] = {}
+        end
         local dist = #(Config.Houses[house] - coords)
         if dist < 5.5 then
             local rTreat = Config.Treats[math.random(1,#Config.Treats)]
@@ -58,10 +103,10 @@ AddEventHandler('wasabi_halloween:trickOrTreat', function(house, coords)
             else
                 local Player = QBCore.Functions.GetPlayer(source)
                 Player.Functions.AddItem(rTreat.item, math.random(rTreat.min,rTreat.max))
-				TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items[rTreat.item], "add")
+                TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items[rTreat.item], "add")
             end
-            houses[house] = true
-            TriggerClientEvent('wasabi_halloween:removeBlip', -1, house)
+            houses[house][license] = true 
+            TriggerClientEvent('wasabi_halloween:removeBlip', source, house)
         end
     end
 end)
