@@ -138,7 +138,7 @@ Config.Peds = { -- Random peds that my spawn answering door
     'u_m_y_zombie_01',
     'ig_trafficwarden',
     'ig_prolsec_02',
-    'u_m_y_juggernaut_',
+    'u_m_y_juggernaut_01',
     'u_m_y_mani',
     'u_m_y_dancerave_01',
     'ig_chrisformage',
