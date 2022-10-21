@@ -30,10 +30,22 @@ if framework == 'esx' then
     RegisterNetEvent('esx:playerLoaded')
     AddEventHandler('esx:playerLoaded', function(xPlayer)
         if Config.TrickOrTreat then
-            local houses = lib.callback.await('wasabi_halloween:syncBlips', 100)
-            if houses then
-                for k,v in pairs(houses) do
-                    RemoveBlip(blips[k])
+            if Config.onePlayerPerHouse then
+                local houses = lib.callback.await('wasabi_halloween:syncBlips', 100)
+                if houses then
+                    for k,v in pairs(houses) do
+                        RemoveBlip(blips[k])
+                    end
+                end
+            else
+                local houses = lib.callback.await('wasabi_halloween:syncBlips', 100)
+                if houses then
+                    local license = lib.callback.await('wasabi_halloween:getLicense', 100)
+                    for k,v in pairs(houses) do
+                        if v[license] then
+                            RemoveBlip(blips[k])
+                        end
+                    end
                 end
             end
         end
@@ -42,10 +54,22 @@ else
     RegisterNetEvent('QBCore:Client:OnPlayerLoaded')
     AddEventHandler('QBCore:Client:OnPlayerLoaded', function(xPlayer)
         if Config.TrickOrTreat then
-            local houses = lib.callback.await('wasabi_halloween:syncBlips', 100)
-            if houses then
-                for k,v in pairs(houses) do
-                    RemoveBlip(blips[k])
+            if Config.onePlayerPerHouse then
+                local houses = lib.callback.await('wasabi_halloween:syncBlips', 100)
+                if houses then
+                    for k,v in pairs(houses) do
+                        RemoveBlip(blips[k])
+                    end
+                end
+            else
+                local houses = lib.callback.await('wasabi_halloween:syncBlips', 100)
+                if houses then
+                    local license = lib.callback.await('wasabi_halloween:getLicense', 100)
+                    for k,v in pairs(houses) do
+                        if v[license] then
+                            RemoveBlip(blips[k])
+                        end
+                    end
                 end
             end
         end
