@@ -53,7 +53,7 @@ lib.callback.register('wasabi_halloween:canKnock', function(source, house)
             return true
         end
     else
-        local license = getRockStarLicense(source)
+        local license = getRockstarLicense(source)
         if houses?[house]?[license] then 
             return false
         else
