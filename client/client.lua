@@ -125,9 +125,9 @@ CreateBlip = function(coords, sprite, colour, text, scale)
     SetBlipColour(blip, colour)
     SetBlipAsShortRange(blip, true)
     SetBlipScale(blip, scale)
-    BeginTextCommandSetBlipName("STRING")
-    AddTextComponentString(text)
-    EndTextCommandSetBlipName(blip)
+	AddTextEntry(text, text)
+	BeginTextCommandSetBlipName(text)
+	EndTextCommandSetBlipName(blip)
     return blip
 end
 
