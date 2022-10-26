@@ -46,7 +46,7 @@ lib.callback.register('wasabi_halloween:getLicense', function(source)
 end)
 
 lib.callback.register('wasabi_halloween:canKnock', function(source, house)
-    if not Config.onePlayerPerHouse then
+    if Config.onePlayerPerHouse then
         if houses[house] then
             return false
         else
