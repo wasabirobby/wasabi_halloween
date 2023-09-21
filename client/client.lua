@@ -88,6 +88,7 @@ trickOrTreat = function(house)
             duration = 3500,
             type = 'error'
         })
+        isBusy = false
         return
     end
     local canKnock = lib.callback.await('wasabi_halloween:canKnock', 500, house)
