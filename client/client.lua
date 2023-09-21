@@ -31,16 +31,16 @@ if framework == 'esx' then
     AddEventHandler('esx:playerLoaded', function(xPlayer)
         if Config.TrickOrTreat then
             if Config.onePlayerPerHouse then
-                local houses = lib.callback.await('wasabi_halloween:syncBlips', 100)
+                local houses = lib.callback.await('wasabi_halloween:syncBlips', 500)
                 if houses then
                     for k,v in pairs(houses) do
                         RemoveBlip(blips[k])
                     end
                 end
             else
-                local houses = lib.callback.await('wasabi_halloween:syncBlips', 100)
+                local houses = lib.callback.await('wasabi_halloween:syncBlips', 500)
                 if houses then
-                    local license = lib.callback.await('wasabi_halloween:getLicense', 100)
+                    local license = lib.callback.await('wasabi_halloween:getLicense', 500)
                     for k,v in pairs(houses) do
                         if v[license] then
                             RemoveBlip(blips[k])
@@ -52,19 +52,19 @@ if framework == 'esx' then
     end)
 else
     RegisterNetEvent('QBCore:Client:OnPlayerLoaded')
-    AddEventHandler('QBCore:Client:OnPlayerLoaded', function(xPlayer)
+    RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function(_)
         if Config.TrickOrTreat then
             if Config.onePlayerPerHouse then
-                local houses = lib.callback.await('wasabi_halloween:syncBlips', 100)
+                local houses = lib.callback.await('wasabi_halloween:syncBlips', 500)
                 if houses then
                     for k,v in pairs(houses) do
                         RemoveBlip(blips[k])
                     end
                 end
             else
-                local houses = lib.callback.await('wasabi_halloween:syncBlips', 100)
+                local houses = lib.callback.await('wasabi_halloween:syncBlips', 500)
                 if houses then
-                    local license = lib.callback.await('wasabi_halloween:getLicense', 100)
+                    local license = lib.callback.await('wasabi_halloween:getLicense', 500)
                     for k,v in pairs(houses) do
                         if v[license] then
                             RemoveBlip(blips[k])
@@ -81,15 +81,24 @@ randomPed = function()
 end
 
 trickOrTreat = function(house)
-    local canKnock = lib.callback.await('wasabi_halloween:canKnock', 100, house)
+    if Config.RequireCandyBasket and not pEquip then
+        lib.notify({
+            title = Strings.need_candy_basket,
+            description = Strings.need_candy_basket_desc,
+            duration = 3500,
+            type = 'error'
+        })
+        return
+    end
+    local canKnock = lib.callback.await('wasabi_halloween:canKnock', 500, house)
     if canKnock then
         local plyPed = cache.ped
-        lib.requestAnimDict('timetable@jimmy@doorknock@', 100)
-        TaskPlayAnim(plyPed, 'timetable@jimmy@doorknock@', 'knockdoor_idle', 8.0, 8.0, -1, 3, 0, 0, 0, 0)
+        lib.requestAnimDict('timetable@jimmy@doorknock@', 3000)
+        TaskPlayAnim(plyPed, 'timetable@jimmy@doorknock@', 'knockdoor_idle', 8.0, 8.0, -1, 3, 0, false, false, false)
         Wait(3000)
         local randPed = randomPed()
-        lib.requestModel(randPed, 100)
-        lib.requestAnimDict('mp_common', 100)
+        lib.requestModel(randPed, 3000)
+        lib.requestAnimDict('mp_common', 3000)
         ClearPedTasks(plyPed)
         local coords = GetOffsetFromEntityInWorldCoords(plyPed, 0.2, 0.0, 0.0)
         local heading = GetEntityHeading(plyPed)
@@ -98,7 +107,7 @@ trickOrTreat = function(house)
         SetBlockingOfNonTemporaryEvents(ped, true)
         ClearPedTasks(ped)
         TaskTurnPedToFaceCoord(ped, coords.x, coords.y, coords.z, 3000)
-        TaskPlayAnim(ped,"mp_common","givetake1_a", 8.0, 0.0, -1, 1, 0, 0, 0, 0)
+        TaskPlayAnim(ped,"mp_common","givetake1_a", 8.0, 0.0, -1, 1, 0, false, false, false)
         Wait(2000)
         ClearPedTasks(ped)
         Wait(1000)
@@ -120,7 +129,7 @@ trickOrTreat = function(house)
 end
 
 CreateBlip = function(coords, sprite, colour, text, scale)
-    local blip = AddBlipForCoord(coords)
+    local blip = AddBlipForCoord(coords.x, coords.y, coords.z)
     SetBlipSprite(blip, sprite)
     SetBlipColour(blip, colour)
     SetBlipAsShortRange(blip, true)
@@ -182,9 +191,9 @@ RegisterNetEvent('wasabi_halloween:usePumpkin', function()
         lib.requestModel(`jsd_prop_pumpkin`, 100)
         local hash = `jsd_prop_pumpkin`
         local x, y, z = table.unpack(GetOffsetFromEntityInWorldCoords(ped,0.0,3.0,0.5))
-        pObj = CreateObjectNoOffset(hash, x, y, z, true, false)
+        pObj = CreateObjectNoOffset(hash, x, y, z, true, false, false)
         SetModelAsNoLongerNeeded(hash)
-        SetCurrentPedWeapon(ped, `WEAPON_UNARMED`)
+        SetCurrentPedWeapon(ped, `WEAPON_UNARMED`, false)
         AttachEntityToEntity(pObj, ped, GetPedBoneIndex(ped, 57005), 0.4, -0.02, 0.09, 28.79, -79.4, -95.07, true, true, false, true, 1, true)
         pEquip = true
         lib.notify({
