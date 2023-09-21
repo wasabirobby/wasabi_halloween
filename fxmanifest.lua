@@ -9,7 +9,7 @@ description "Wasabi's ESX/QBCore Halloween Script"
 
 author 'wasabirobby#5110'
 
-version '1.0.5'
+version '1.0.6'
 
 client_scripts {
 	'client/*.lua'
