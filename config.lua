@@ -13,6 +13,8 @@ Config.RequireCandyBasket = false -- Require candy basket to be equipped to tric
 
 Config.onePlayerPerHouse = true -- Set to false if you want everyone a chance to trick-or-treat every house
 
+Config.onlyAtNight = true -- Set to false if you want to be able to trick or treat during daytime
+
 Config.Houses = {
 	[1] = vec3(1060.564, -378.1245, 68.23115),
 	[2] = vec3(1028.926, -408.2442, 66.34283),
@@ -168,6 +170,8 @@ Strings = {
     busy_desc = 'You are already busy doing something',
     out_of_treats = 'Out of Treats',
     out_of_treats_desc = 'This house has already been visited',
+    only_at_night = 'Only at night',
+    only_at_night_desc = 'You can only trick or treat at night!',
     blip_string = 'Trick Or Treat',
 	need_candy_basket = 'No Basket',
 	need_candy_basket_desc = 'You need a candy basket to trick-or-treat!'
