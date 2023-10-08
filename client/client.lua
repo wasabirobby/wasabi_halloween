@@ -81,6 +81,19 @@ randomPed = function()
 end
 
 trickOrTreat = function(house)
+	if Config.onlyAtNight then
+		local hours = GetClockHours()
+		if not hours => 18 then
+            lib.notify({
+                title = Strings.only_at_night,
+                description = Strings.only_at_night_desc,
+                duration = 3500,
+                type = 'error'
+            })
+            isBusy = false
+            return	
+        end
+	end
     if Config.RequireCandyBasket and not pEquip then
         lib.notify({
             title = Strings.need_candy_basket,
