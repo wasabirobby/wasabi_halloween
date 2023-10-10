@@ -3,16 +3,19 @@
 This resource was created as a free fun script for your players to feel festive during Halloween.
 
 ## Features:
-- Trick-or-treat at configured locations
-- Configurable option to only allow one person per house(See config)
-- 100 Pre-Configured locations(Mirror Park; Could use some more locations)
-- Animations
-- Configurable peds
-- Usable jack-o-lantern item to toggle basket prop(Configurable)
-- Custom prop(For the basket)
-- Optimized 0.00ms idle
-- Compatible with ESX/QBCore
-- Utilizes ox_lib
+
+* Trick-or-treat at configured locations
+* Configurable option to only allow one person per house(See config)
+* 100 Pre-Configured locations(Mirror Park; Could use some more locations)
+* Option to only allow trick-or-treat at night
+* Option to require basket to be equipped to trick-or-treat
+* Animations
+* Configurable peds
+* Usable jack-o-lantern item to toggle basket prop(Configurable)
+* Custom prop(For the basket)
+* Optimized 0.00ms idle
+* Compatible with ESX/QBCore
+* Utilizes ox_lib
 
 ## Dependency
 + ox_lib - https://github.com/overextended/ox_lib/releases
