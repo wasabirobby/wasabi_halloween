@@ -83,7 +83,7 @@ end
 trickOrTreat = function(house)
 	if Config.onlyAtNight then
 		local hours = GetClockHours()
-		if not hours => 18 then
+		if not (hours >= 18) then
             lib.notify({
                 title = Strings.only_at_night,
                 description = Strings.only_at_night_desc,
